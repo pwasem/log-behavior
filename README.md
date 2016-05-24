@@ -13,7 +13,7 @@
 
  Example usage:
 
-```
+```html
     <dom-module id="my-element">
        <template>
          <locale-storage debug="my-element:*"></locale-storage>

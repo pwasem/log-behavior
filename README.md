@@ -18,7 +18,7 @@
        <template>
          <locale-storage debug="my-element:*"></locale-storage>
        </template>
-       <script>
+       <script type="text/javascript">
           Polymer({
 
             is: 'my-element',
@@ -35,6 +35,6 @@
               this._log.error('this is a error message');
             },
           });
-       &lt;/script>
+       </script>
     </dom-module>
 ```     

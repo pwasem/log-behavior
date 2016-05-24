@@ -1,0 +1,160 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="./debug-element.html">
+<script type="text/javascript">
+  (function () {
+
+    'use strict';
+
+    /**
+     * Available log levels
+     */
+    var LOG_LEVELS = [
+      'info',
+      'debug',
+      'trace',
+      'warn',
+      'error'
+    ];
+
+    /**
+     * Get log function for name and level
+     */
+    function _getLogFn(name, level) {
+
+      var logFn = null;
+
+      if (typeof debug === 'function' && typeof level === 'string') {
+
+        var namespace = name + ':' + level;
+        logFn = debug(namespace);
+        logFn.log = console[level].bind(console);
+
+      }
+
+      return logFn;
+
+    }
+
+    /**
+     * Get log instance for element
+     */
+    function _getLogInstance(element) {
+
+      var logInstance = {};
+
+      LOG_LEVELS.forEach(function (level) {
+
+        var logFn = _getLogFn(element.is, level);
+
+        if (typeof logFn === 'function') {
+
+          logInstance[level] = function () {
+
+            if (element.verbose) {
+
+              var args = [].slice.call(arguments);
+              logFn.apply(element, args);
+
+            }
+          }
+        }
+
+      });
+
+      return logInstance;
+
+    }
+
+    /**
+     * `PolymerElements.LogBehavior` wraps the [visionmedia/debug](https://github.com/visionmedia/debug#browser-support) library to
+     *  enable filterable logging per element and level.
+     *
+     *  To enable logs `visionmedia/debug` requires localeStorage.debug to be set to your desired scope,
+     *  e.g. `my-element:error`.
+     *  For your convenience this can be done using an instance of the bundled &lt;locale-storage&gt; element, instead of
+     *  setting the scope directly via your browser console.
+     *
+     *  It is meant to be used in development as well as in production.
+     *
+     *  Example usage:
+     *
+     *     <dom-module id="my-element">
+     *        <template>
+     *          <locale-storage debug="my-element:*"></locale-storage>
+     *        </template>
+     *        <script>
+     *           Polymer({
+     *
+     *             is: 'my-element',
+     *
+     *             behaviors: [
+     *               PolymerElements.LogBehavior
+     *             ],
+     *
+     *             ready: function() {
+     *               this._log.info('this is an info message');
+     *               this._log.debug('this is a debug message');
+     *               this._log.trace('this is a trace message');
+     *               this._log.warn('this is a warn message');
+     *               this._log.error('this is a error message');
+     *             },
+     *           });
+     *        &lt;/script>
+     *     </dom-module>
+     *
+     *
+     * @demo demo/index.html
+     * @polymerBehavior PolymerElements.LogBehavior
+     *
+     */
+    var LogBehaviorImpl = {
+
+      'properties': {
+
+        /**
+         * Enable / disable logging for element.
+         * Logs for element are only shown if set to `true`.
+         */
+        'verbose': {
+          'type': Boolean,
+          'notify': false,
+          'readOnly': false,
+          'reflectToAttribute': true,
+          'value': false
+        },
+
+        /**
+         * Private log instance for element
+         *
+         * For example:
+         *
+         *  this._log.info('this is an info message');<br>
+         *  this._log.debug('this is a debug message');<br>
+         *  this._log.trace('this is a debug message');<br>
+         *  this._log.warn('this is a warn message');<br>
+         *  this._log.error('this is an error message');<br>
+         */
+        '_log': {
+          'type': Object,
+          'notify': false,
+          'readOnly': true,
+          'value': function () {
+            var element = this;
+            var logInstance = _getLogInstance(element);
+            return logInstance;
+          }
+        }
+
+      }
+
+    };
+
+    // define namespace
+    window.PolymerElements = window.PolymerElements || {};
+
+    // register behavior
+    window.PolymerElements.LogBehavior = window.PolymerElements.LogBehavior || LogBehaviorImpl;
+
+  })();
+
+</script>

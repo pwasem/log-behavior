@@ -1,0 +1,27 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../log-behavior.html">
+
+<dom-module id="my-element">
+  <template>
+  </template>
+  <script type="text/javascript">
+    Polymer({
+
+      'is': 'my-element',
+
+      'behaviors': [
+        PolymerElements.LogBehavior
+      ],
+
+      'attached': function () {
+
+        this._log.info('this is an info log');
+        this._log.debug('this is a debug log');
+        this._log.trace('this is a trace log');
+        this._log.warn('this is a warn log');
+        this._log.error('this is an error log');
+      }
+
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,50 @@
+<link rel="import" href="../polymer/polymer.html">
+
+
+<!--
+An element for setting window.localeStorage.debug as required by `visionmedia/debug`.
+
+Example:
+
+    <locale-storage debug="*"></locale-storage>
+
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="locale-storage">
+  <template></template>
+  <script type="text/javascript">
+    Polymer({
+
+      'is': 'locale-storage',
+
+      'properties': {
+
+        /**
+         * Set logging scope, <br>
+         * e.g. 'my-element:*', 'my-element:error', 'my-element:error,my-element:info' <br>
+         * Value changes are forwarded to window.localeStorage.debug
+         */
+        'debug': {
+          'type': String,
+          'value': '',
+          'readOnly': false,
+          'notify': false,
+          'observer': '_debugChanged'
+        }
+
+      },
+
+      /**
+       * Forward changed to window.localeStorage.debug
+       */
+      '_debugChanged': function (debug) {
+
+        window.localStorage.debug = debug;
+      }
+
+    });
+  </script>
+</dom-module>

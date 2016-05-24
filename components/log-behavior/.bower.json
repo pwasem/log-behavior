@@ -1,0 +1,36 @@
+{
+  "name": "log-behavior",
+  "description": "A log behavior for polymer elements, based on visionmedia-debug",
+  "main": "log-behavior.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pwasem/log-behavior.git"
+  },
+  "keywords": [
+    "polymer",
+    "debug",
+    "visionmedia",
+    "log"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "visionmedia-debug": "^2.2.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/pwasem/log-behavior",
+  "_release": "8fcd889487",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "8fcd889487265f1c41c9789609ce07dba44be2b5"
+  },
+  "_source": "git://github.com/pwasem/log-behavior.git",
+  "_target": "master",
+  "_originalSource": "pwasem/log-behavior",
+  "_direct": true
+}

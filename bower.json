@@ -2,6 +2,10 @@
   "name": "log-behavior",
   "description": "A log behavior for polymer elements, based on visionmedia-debug",
   "main": "log-behavior.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pwasem/log-behavior.git"
+  },
   "keywords": [
     "polymer",
     "debug",

@@ -9,7 +9,7 @@
 
  It is meant to be used in development as well as in production.
  
- See the component page for full documentation.
+ See the [component-page](http://pwasem.github.io/log-behavior/) for full documentation.
 
  Example usage:
 
